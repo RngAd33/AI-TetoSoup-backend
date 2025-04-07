@@ -1,0 +1,14 @@
+Spring:
+  datasource:
+
+
+knife4j:
+  enable: true
+  openapi:
+    title: Teto的接口文档
+    group:
+      test1:
+        group-name: 分组
+        api-rule: package
+        api-rule-resources:
+          - com.knife4j.demo.new3
