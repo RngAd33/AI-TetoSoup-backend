@@ -1,14 +1,38 @@
-Spring:
+spring:
+  profiles:
+    active: dev
+  application:
+    name: user-center
   datasource:
+    # 本地数据库配置
+    driver-class-name: ${sky.datasource.driver-class-name}
+    url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}
+    username: ${sky.datasource.username}
+    password: ${sky.datasource.password}
+  session:
+    timeout: ${sky.jwt.admin-ttl}
 
+server:
+  port: 8080
 
+mybatis-plus:
+  configuration:
+    # 是否开启驼峰命名
+    map-underscore-to-camel-case: false
+
+sky:
+  jwt:
+    admin-secret-key: ${sky.jwt.admin-secret-key}
+    admin-token-name: ${sky.jwt.admin-token-name}
+
+# 接口文档
 knife4j:
   enable: true
   openapi:
     title: Teto的接口文档
     group:
-      test1:
-        group-name: 分组
+      default:
+        group-name: 默认分组
         api-rule: package
         api-rule-resources:
-          - com.knife4j.demo.new3
+          - com.rngad33.tetosoup.controller

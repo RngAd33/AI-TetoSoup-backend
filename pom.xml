@@ -14,7 +14,7 @@
         <spring-boot.version>3.1.0</spring-boot.version>
     </properties>
     <dependencies>
-        <!-- SoringBoot -->
+        <!-- SpringBoot -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
