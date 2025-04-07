@@ -16,6 +16,7 @@
 
 package com.rngad33.tetosoup.web.controller;
 
+import com.rngad33.tetosoup.web.model.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
