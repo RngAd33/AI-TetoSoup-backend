@@ -8,9 +8,9 @@ import com.volcengine.ark.runtime.service.ArkService;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import lombok.Value;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
-import org.springframework.beans.factory.annotation.Value;
 
 /**
  * AI调用
