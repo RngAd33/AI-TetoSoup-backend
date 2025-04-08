@@ -5,11 +5,11 @@ import com.volcengine.ark.runtime.model.bot.completion.chat.BotChatCompletionRes
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
 import com.volcengine.ark.runtime.service.ArkService;
-import okhttp3.ConnectionPool;
-import okhttp3.Dispatcher;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
+import okhttp3.ConnectionPool;
+import okhttp3.Dispatcher;
 
 /**
  * AI调用
