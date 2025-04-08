@@ -25,10 +25,6 @@ public class Main {
     ArkService service = ArkService.builder().dispatcher(dispatcher).connectionPool(connectionPool).baseUrl("https://ark.cn-beijing.volces.com/api/v3/").apiKey(apiKey).build();
 
     public static void main(String[] args) {
-        doAi();
-    }
-
-    private static void doAi() {
 
         System.out.println("\n----- standard request -----");
 
