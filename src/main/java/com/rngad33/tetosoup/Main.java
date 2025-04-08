@@ -10,22 +10,32 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
+import org.springframework.beans.factory.annotation.Value;
 
 /**
  * AI调用
  */
 public class Main {
 
-    static String apiKey = System.getenv("ARK_API_KEY");
-    static ConnectionPool connectionPool = new ConnectionPool(5, 1, TimeUnit.SECONDS);
-    static Dispatcher dispatcher = new Dispatcher();
-    static ArkService service = ArkService.builder().dispatcher(dispatcher).connectionPool(connectionPool).baseUrl("https://ark.cn-beijing.volces.com/api/v3/").apiKey(apiKey).build();
+    @Value("ai.apikey")
+    private String apiKey;
+
+    ConnectionPool connectionPool = new ConnectionPool(5, 1, TimeUnit.SECONDS);
+    Dispatcher dispatcher = new Dispatcher();
+    ArkService service = ArkService.builder().dispatcher(dispatcher).connectionPool(connectionPool).baseUrl("https://ark.cn-beijing.volces.com/api/v3/").apiKey(apiKey).build();
 
     public static void main(String[] args) {
+        doAi();
+    }
+
+    private static void doAi() {
+
         System.out.println("\n----- standard request -----");
+
+        // 创建消息列表
         final List<ChatMessage> messages = new ArrayList<>();
-        final ChatMessage systemMessage = ChatMessage.builder().role(ChatMessageRole.SYSTEM).content("你是豆包，是由字节跳动开发的 AI 人工智能助手").build();
-        final ChatMessage userMessage = ChatMessage.builder().role(ChatMessageRole.USER).content("常见的十字花科植物有哪些？").build();
+        final ChatMessage systemMessage = ChatMessage.builder().role(ChatMessageRole.SYSTEM).content("你是 AI 海龟汤主持人").build();
+        final ChatMessage userMessage = ChatMessage.builder().role(ChatMessageRole.USER).content("开始").build();
         messages.add(systemMessage);
         messages.add(userMessage);
 
@@ -34,8 +44,9 @@ public class Main {
                 .messages(messages)
                 .build();
 
-        BotChatCompletionResult chatCompletionResult =  service.createBotChatCompletion(chatCompletionRequest);
+        BotChatCompletionResult chatCompletionResult = service.createBotChatCompletion(chatCompletionRequest);
         chatCompletionResult.getChoices().forEach(choice -> System.out.println(choice.getMessage().getContent()));
+
         // the references example
         if (chatCompletionResult.getReferences() != null) {
             chatCompletionResult.getReferences().forEach(ref -> System.out.println(ref.getUrl()));
