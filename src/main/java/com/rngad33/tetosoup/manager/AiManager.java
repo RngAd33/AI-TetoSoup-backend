@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * AI封装类，用于代码复用
+ * AI调用封装类，用于代码复用
  */
 @Service
 public class AiManager {
@@ -27,8 +27,8 @@ public class AiManager {
     /**
      * 调用 AI（初始化版）
      *
-     * @param systemPrompt 系统预置提示词
-     * @param userPrompt 用户交流提示词
+     * @param systemPrompt 系统预设
+     * @param userPrompt 用户预设
      * @return 返回结果
      */
     public String doChat(String systemPrompt, String userPrompt) {
@@ -61,7 +61,7 @@ public class AiManager {
     /**
      * AI单次调用方法
      *
-     * @param messages 消息 / 消息列表
+     * @param messages 消息列表
      * @return 返回结果
      */
     private String doInvoke(List<ChatMessage> messages) {
