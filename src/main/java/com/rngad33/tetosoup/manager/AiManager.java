@@ -25,7 +25,7 @@ public class AiManager {
     private ArkService arkService;
 
     /**
-     * 调用 AI
+     * 调用 AI（初始化版）
      *
      * @param systemPrompt 系统预置提示词
      * @param userPrompt 用户交流提示词
@@ -43,7 +43,28 @@ public class AiManager {
         messages.add(systemMessage);
         messages.add(userMessage);
 
-        // 单次调用
+        // 传递消息，单次调用
+        return doInvoke(messages);
+    }
+
+    /**
+     * 调用 AI（通用版）
+     *
+     * @param chatMessageList 消息列表
+     * @return 返回结果
+     */
+    public String doChat(List<ChatMessage> chatMessageList) {
+        // 传递消息，单次调用
+        return doInvoke(chatMessageList);
+    }
+
+    /**
+     * AI单次调用方法
+     *
+     * @param messages 消息 / 消息列表
+     * @return 返回结果
+     */
+    private String doInvoke(List<ChatMessage> messages) {
         BotChatCompletionRequest chatCompletionRequest = BotChatCompletionRequest.builder()
                 .botId("bot-20250407152509-khg8p")
                 .messages(messages)
