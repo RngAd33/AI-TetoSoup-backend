@@ -27,9 +27,9 @@ public class AiManager {
     /**
      * 调用AI
      *
-     * @param systemPrompt
-     * @param userPrompt
-     * @return
+     * @param systemPrompt 预置提示词
+     * @param userPrompt 用户交流
+     * @return AI返回结果
      */
     public String doChat(String systemPrompt, String userPrompt) {
         // 创建消息列表
