@@ -9,10 +9,10 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 @SpringBootApplication
 @MapperScan("com.rngad33.tetosoup.web.mapper")
-public class AiTetosoupBackendApplication {
+public class AiTetoSoupApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(AiTetosoupBackendApplication.class, args);
+        SpringApplication.run(AiTetoSoupApplication.class, args);
     }
 
 }

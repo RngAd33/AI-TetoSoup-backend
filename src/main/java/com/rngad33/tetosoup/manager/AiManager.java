@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * AI封装类
+ * AI封装类，用于代码复用
  */
 @Service
 public class AiManager {
@@ -25,11 +25,11 @@ public class AiManager {
     private ArkService arkService;
 
     /**
-     * 调用AI
+     * 调用 AI
      *
-     * @param systemPrompt 预置提示词
-     * @param userPrompt 用户交流
-     * @return AI返回结果
+     * @param systemPrompt 系统预置提示词
+     * @param userPrompt 用户交流提示词
+     * @return 返回结果
      */
     public String doChat(String systemPrompt, String userPrompt) {
         // 创建消息列表
