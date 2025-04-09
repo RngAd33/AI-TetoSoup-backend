@@ -20,6 +20,11 @@ public class AiConfig {
 
     private String apiKey;
 
+    /**
+     * AI客户端初始化
+     *
+     * @return 客户端Bean
+     */
     @Bean
     public ArkService arkService() {
         ConnectionPool connectionPool = new ConnectionPool(5, 1, TimeUnit.SECONDS);
