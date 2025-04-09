@@ -1,32 +1,22 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
 spring:
   profiles:
     active: dev
   application:
-    name: ai-tetosoup
+    name: Ai-TetoSoup
   datasource:
     driver-class-name: ${sky.datasource.driver-class-name}
     url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}
     username: ${sky.datasource.username}
     password: ${sky.datasource.password}
-  session:
-    timeout: ${sky.jwt.admin-ttl}
 
-server:
-  port: 8080
-
-mybatis-plus:
-  configuration:
-    # 是否开启驼峰命名
-    map-underscore-to-camel-case: false
-
-sky:
-  jwt:
-    admin-secret-key: ${sky.jwt.admin-secret-key}
-    admin-token-name: ${sky.jwt.admin-token-name}
-
-# AI
+# AI接口
 ai:
-  apikey: ${sky.ai.apikey}
+  apiKey: ${sky.ai.apikey}
 
 # 接口文档
 knife4j:
