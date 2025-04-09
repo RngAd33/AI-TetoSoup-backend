@@ -108,7 +108,7 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <mainClass>com.rngad33.tetosoup.AiTetoSoupApplication</mainClass>
+                    <mainClass>com.rngad33.tetosoup.AiTetosoupBackendApplication</mainClass>
                     <skip>true</skip>
                 </configuration>
                 <executions>
