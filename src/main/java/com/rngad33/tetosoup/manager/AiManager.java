@@ -19,11 +19,18 @@ import java.util.List;
 public class AiManager {
 
     /**
-     * 客户端调用
+     * 调用客户端
      */
     @Resource
     private ArkService arkService;
 
+    /**
+     * 调用AI
+     *
+     * @param systemPrompt
+     * @param userPrompt
+     * @return
+     */
     public String doChat(String systemPrompt, String userPrompt) {
         // 创建消息列表
         final List<ChatMessage> messages = new ArrayList<>();
