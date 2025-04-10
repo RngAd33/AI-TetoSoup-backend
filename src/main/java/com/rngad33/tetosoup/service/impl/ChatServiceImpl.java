@@ -5,7 +5,6 @@ import com.rngad33.tetosoup.service.ChatService;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
 import jakarta.annotation.Resource;
-
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -57,19 +56,21 @@ public class ChatServiceImpl implements ChatService {
                 .content(systemPrompt)
                 .build();
 
-        // 判断是否为首次开始
+        // 首次开始
         if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
             globalMessageMap.put(roomId, messages);
+            final ChatMessage userMessage = ChatMessage.builder()
+                    .role(ChatMessageRole.USER).content(message)
+                    .build();
+            messages.add(systemMessage);
+            messages.add(userMessage);
         }
-
-        final ChatMessage userMessage = ChatMessage.builder()
-                .role(ChatMessageRole.USER).content(message)
-                .build();
-        messages.add(systemMessage);
-        messages.add(userMessage);
 
         // 调用AI
         String answer = aiManager.doChat(messages);
+        final ChatMessage assistantMessage = ChatMessage.builder().role(ChatMessageRole.ASSISTANT)
+                .content(systemPrompt)
+                .build();;
 
         // 返回信息
         return answer;
