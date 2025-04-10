@@ -54,8 +54,8 @@ public class ChatServiceImpl implements ChatService {
                 .content(systemPrompt)
                 .build();
 
-        // 判断是否首次开始
-        if (!globalMessageMap.containsKey(roomId)) {
+        // 判断是否为首次开始
+        if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
             globalMessageMap.put(roomId, messages);
         }
 
