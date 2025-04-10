@@ -11,6 +11,6 @@ public interface ChatService {
      * @param message 用户输入的信息
      * @return 返回结果
      */
-    String doChat(String message);
+    String doChat(long roomId, String message);
 
 }

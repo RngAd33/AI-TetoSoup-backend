@@ -5,19 +5,24 @@ import com.rngad33.tetosoup.service.ChatService;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
 import jakarta.annotation.Resource;
+
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class ChatServiceImpl implements ChatService {
 
-    /**
-     * 调用客户端
-     */
     @Resource
     private AiManager aiManager;
 
+    /**
+     * 全局消息映射
+     */
+    final Map<Long, List<ChatMessage>> globalMessageMap = new HashMap<>();
+
     @Override
-    public String doChat(String message) {
+    public String doChat(long roomId, String message) {
 
         // 准备系统预设
         final String systemPrompt = "你是一位海龟汤游戏主持人，当我说“开始”的时候，你要给我出一道海龟汤游戏的“汤面”。然后我会依次问你一些问题，你只能回答“是”、“否”或者“与此无关”。但在以下几种情况下，你需要结束游戏，并输出游戏的“汤底”：\n" +
@@ -48,6 +53,12 @@ public class ChatServiceImpl implements ChatService {
         final ChatMessage systemMessage = ChatMessage.builder().role(ChatMessageRole.SYSTEM)
                 .content(systemPrompt)
                 .build();
+
+        // 判断是否首次开始
+        if (!globalMessageMap.containsKey(roomId)) {
+            globalMessageMap.put(roomId, messages);
+        }
+
         final ChatMessage userMessage = ChatMessage.builder()
                 .role(ChatMessageRole.USER).content(message)
                 .build();
