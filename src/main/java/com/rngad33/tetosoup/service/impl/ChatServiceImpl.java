@@ -5,10 +5,8 @@ import com.rngad33.tetosoup.service.ChatService;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
 import jakarta.annotation.Resource;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+
+import java.util.*;
 
 /**
  * 客户端服务实现
@@ -23,6 +21,13 @@ public class ChatServiceImpl implements ChatService {
      */
     final Map<Long, List<ChatMessage>> globalMessageMap = new HashMap<>();
 
+    /**
+     * 与 AI 对话
+     *
+     * @param roomId   房间号
+     * @param message 用户输入的信息
+     * @return 返回结果
+     */
     @Override
     public String doChat(long roomId, String message) {
 
@@ -51,10 +56,6 @@ public class ChatServiceImpl implements ChatService {
                 "“这个人曾和同伴在海上遇难，同伴死后，他靠吃同伴的尸体活了下来。餐厅的海龟汤让他意识到自己吃的其实是人肉，因此崩溃自杀。”\n";
 
         // 准备消息列表（需要关联历史上下文）
-        final ChatMessage systemMessage = ChatMessage.builder()
-                .role(ChatMessageRole.SYSTEM)
-                .content(systemPrompt)   // 系统预设
-                .build();
         final ChatMessage userMessage = ChatMessage.builder()
                 .role(ChatMessageRole.USER)
                 .content(message)   // 用户消息
@@ -64,13 +65,17 @@ public class ChatServiceImpl implements ChatService {
         // 判断是否为首次对话
         if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
             // - 首次对话，创建房间、初始化消息列表、添加系统预设
+            final ChatMessage systemMessage = ChatMessage.builder()
+                    .role(ChatMessageRole.SYSTEM)
+                    .content(systemPrompt)   // 系统预设
+                    .build();
             globalMessageMap.put(roomId, messages);
-            messages.add(systemMessage);   // 系统预设仅首次对话添加
+            messages.add(systemMessage);
         } else {
             // - 二次对话，读取过去的消息列表
             messages = globalMessageMap.get(roomId);
         }
-        messages.add(userMessage);   // 读取用户预设
+        messages.add(userMessage);   // 读取用户消息
 
         // 调用AI
         String answer = aiManager.doChat(messages);
@@ -81,6 +86,20 @@ public class ChatServiceImpl implements ChatService {
         messages.add(assistantMessage);   // 消息列表追加
 
         // 返回信息
+        if (answer.contains("汤底")) {
+            // 游戏结束，释放房间 id
+            globalMessageMap.remove(roomId);
+        }
         return answer;
+    }
+
+    /**
+     * 获取房间列表
+     *
+     * @return
+     */
+    @Override
+    public List<Map<Long, List<ChatMessage>>> getChatRoomList() {
+        return Collections.emptyList();
     }
 }
