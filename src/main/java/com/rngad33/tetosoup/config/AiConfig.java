@@ -1,4 +1,4 @@
-package com.rngad33.tetosoup.web.config;
+package com.rngad33.tetosoup.config;
 
 import com.volcengine.ark.runtime.service.ArkService;
 import lombok.Data;

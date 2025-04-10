@@ -1,4 +1,4 @@
-package com.rngad33.tetosoup.web.controller;
+package com.rngad33.tetosoup.controller;
 
 /**
  * 聊天接口

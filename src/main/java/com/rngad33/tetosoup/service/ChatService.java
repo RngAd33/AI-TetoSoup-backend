@@ -1,4 +1,4 @@
-package com.rngad33.tetosoup.web.service;
+package com.rngad33.tetosoup.service;
 
 /**
  * 客户端服务接口
