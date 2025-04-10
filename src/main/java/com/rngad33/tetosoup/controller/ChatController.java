@@ -37,4 +37,5 @@ public class ChatController {
     public List<ChatRoom> getChatRoomList() {
         return chatService.getChatRoomList();
     }
+
 }
