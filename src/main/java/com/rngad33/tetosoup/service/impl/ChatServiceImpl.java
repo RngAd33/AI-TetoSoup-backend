@@ -43,7 +43,7 @@ public class ChatServiceImpl implements ChatService {
                 "AI 回复（汤底）：\n" +
                 "“这个人曾和同伴在海上遇难，同伴死后，他靠吃同伴的尸体活了下来。餐厅的海龟汤让他意识到自己吃的其实是人肉，因此崩溃自杀。”\n";
 
-        // 准备消息列表（关联历史上下文）
+        // 准备消息列表（需要关联历史上下文）
         final List<ChatMessage> messages = new ArrayList<>();
         final ChatMessage systemMessage = ChatMessage.builder().role(ChatMessageRole.SYSTEM)
                 .content(systemPrompt)
