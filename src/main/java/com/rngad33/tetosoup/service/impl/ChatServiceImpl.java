@@ -65,9 +65,7 @@ public class ChatServiceImpl implements ChatService {
             // 首次对话
             globalMessageMap.put(roomId, messages);
             messages.add(systemMessage);    // 系统预设仅首次对话添加
-            messages.add(userMessage);
-        }
-        messages.add(userMessage);
+        } messages.add(userMessage);
 
         // 调用AI
         String answer = aiManager.doChat(messages);
