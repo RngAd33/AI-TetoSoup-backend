@@ -6,6 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
+/**
+ * 客户端接口层
+ */
 @RestController
 @RequestMapping("/chat")
 public class ChatController {
