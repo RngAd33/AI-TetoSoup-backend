@@ -2,6 +2,7 @@ package com.rngad33.tetosoup.controller;
 
 import com.rngad33.tetosoup.model.ChatRoom;
 import com.rngad33.tetosoup.service.ChatService;
+import jakarta.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
@@ -13,7 +14,7 @@ import java.util.List;
 @RequestMapping("/chat")
 public class ChatController {
 
-    @Autowired
+    @Resource
     private ChatService chatService;
 
     /**
