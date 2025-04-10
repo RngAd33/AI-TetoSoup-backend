@@ -3,9 +3,8 @@ package com.rngad33.tetosoup.controller;
 import com.rngad33.tetosoup.model.ChatRoom;
 import com.rngad33.tetosoup.service.ChatService;
 import jakarta.annotation.Resource;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
 import java.util.List;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * 客户端接口层
@@ -24,8 +23,8 @@ public class ChatController {
      * @param message 用户输入的消息
      * @return AI 的回复
      */
-    @PostMapping("/doChat")
-    public String doChat(@RequestParam long roomId, @RequestParam String message) {
+    @PostMapping("/doChat/{roomId}")
+    public String doChat(@PathVariable long roomId, @RequestParam String message) {
         return chatService.doChat(roomId, message);
     }
 
