@@ -4,7 +4,6 @@ import com.rngad33.tetosoup.manager.AiManager;
 import com.rngad33.tetosoup.service.ChatService;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
-import com.volcengine.ark.runtime.service.ArkService;
 import jakarta.annotation.Resource;
 
 import java.util.ArrayList;
