@@ -59,7 +59,7 @@ public class AiManager {
     }
 
     /**
-     * AI单次调用方法
+     * 单次调用方法
      *
      * @param messages 消息列表
      * @return 返回结果

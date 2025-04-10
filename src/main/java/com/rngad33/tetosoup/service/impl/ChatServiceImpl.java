@@ -51,21 +51,26 @@ public class ChatServiceImpl implements ChatService {
                 "“这个人曾和同伴在海上遇难，同伴死后，他靠吃同伴的尸体活了下来。餐厅的海龟汤让他意识到自己吃的其实是人肉，因此崩溃自杀。”\n";
 
         // 准备消息列表（需要关联历史上下文）
-        final List<ChatMessage> messages = new ArrayList<>();
         final ChatMessage systemMessage = ChatMessage.builder()
                 .role(ChatMessageRole.SYSTEM)
-                .content(systemPrompt)
+                .content(systemPrompt)   // 系统预设
                 .build();
         final ChatMessage userMessage = ChatMessage.builder()
-                .role(ChatMessageRole.USER).content(message)
+                .role(ChatMessageRole.USER)
+                .content(message)   // 用户消息
                 .build();
+        List<ChatMessage> messages = new ArrayList<>();
 
         // 判断是否为首次对话
         if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
-            // 首次对话
+            // - 首次对话，创建房间、初始化消息列表、添加系统预设
             globalMessageMap.put(roomId, messages);
-            messages.add(systemMessage);    // 系统预设仅首次对话添加
-        } messages.add(userMessage);
+            messages.add(systemMessage);   // 系统预设仅首次对话添加
+        } else {
+            // - 二次对话，读取过去的消息列表
+            messages = globalMessageMap.get(roomId);
+        }
+        messages.add(userMessage);   // 读取用户预设
 
         // 调用AI
         String answer = aiManager.doChat(messages);
@@ -73,7 +78,7 @@ public class ChatServiceImpl implements ChatService {
                 .role(ChatMessageRole.ASSISTANT)
                 .content(systemPrompt)
                 .build();
-        messages.add(assistantMessage);
+        messages.add(assistantMessage);   // 消息列表追加
 
         // 返回信息
         return answer;
