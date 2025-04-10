@@ -26,7 +26,7 @@ public class ChatServiceImpl implements ChatService {
     @Override
     public String doChat(long roomId, String message) {
 
-        // 系统预设
+        // 系统预设（仅添加一次）
         final String systemPrompt = "你是一位海龟汤游戏主持人，当我说“开始”的时候，你要给我出一道海龟汤游戏的“汤面”。然后我会依次问你一些问题，你只能回答“是”、“否”或者“与此无关”。但在以下几种情况下，你需要结束游戏，并输出游戏的“汤底”：\n" +
                 "- 我给出“不想玩了、或者想要答案”之类的表达\n" +
                 "- 我几乎已经讲明了真相，或者已经还原了故事，或者所有关键问题都已经询问过\n" +
@@ -56,16 +56,18 @@ public class ChatServiceImpl implements ChatService {
                 .role(ChatMessageRole.SYSTEM)
                 .content(systemPrompt)
                 .build();
+        final ChatMessage userMessage = ChatMessage.builder()
+                .role(ChatMessageRole.USER).content(message)
+                .build();
 
-        // 首次开始
+        // 判断是否为首次对话
         if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
+            // 首次对话
             globalMessageMap.put(roomId, messages);
-            final ChatMessage userMessage = ChatMessage.builder()
-                    .role(ChatMessageRole.USER).content(message)
-                    .build();
-            messages.add(systemMessage);
+            messages.add(systemMessage);    // 系统预设仅首次对话添加
             messages.add(userMessage);
         }
+        messages.add(userMessage);
 
         // 调用AI
         String answer = aiManager.doChat(messages);
