@@ -1,8 +1,7 @@
 package com.rngad33.tetosoup.service;
 
-import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
+import com.rngad33.tetosoup.model.ChatRoom;
 import java.util.List;
-import java.util.Map;
 
 /**
  * 客户端服务接口
@@ -23,6 +22,6 @@ public interface ChatService {
      *
      * @return
      */
-    List<Map<Long, List<ChatMessage>>> getChatRoomList();
+    List<ChatRoom> getChatRoomList();
 
 }

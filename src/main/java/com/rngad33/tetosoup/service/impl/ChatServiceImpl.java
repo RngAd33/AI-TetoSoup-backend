@@ -1,16 +1,19 @@
 package com.rngad33.tetosoup.service.impl;
 
 import com.rngad33.tetosoup.manager.AiManager;
+import com.rngad33.tetosoup.model.ChatRoom;
 import com.rngad33.tetosoup.service.ChatService;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessage;
 import com.volcengine.ark.runtime.model.completion.chat.ChatMessageRole;
 import jakarta.annotation.Resource;
+import org.springframework.stereotype.Service;
 
 import java.util.*;
 
 /**
  * 客户端服务实现
  */
+@Service
 public class ChatServiceImpl implements ChatService {
 
     @Resource
@@ -99,7 +102,14 @@ public class ChatServiceImpl implements ChatService {
      * @return
      */
     @Override
-    public List<Map<Long, List<ChatMessage>>> getChatRoomList() {
-        return Collections.emptyList();
+    public List<ChatRoom> getChatRoomList() {
+        List<ChatRoom> chatRoomList = new ArrayList<>();
+        for (Map.Entry<Long, List<ChatMessage>> roomIdMessageListEntry : globalMessageMap.entrySet()) {
+            ChatRoom chatRoom = new ChatRoom();
+            chatRoom.setRoomId(roomIdMessageListEntry.getKey());
+            chatRoom.setChatMessageList(roomIdMessageListEntry.getValue());
+            chatRoomList.add(chatRoom);
+        }
+        return chatRoomList;
     }
 }
