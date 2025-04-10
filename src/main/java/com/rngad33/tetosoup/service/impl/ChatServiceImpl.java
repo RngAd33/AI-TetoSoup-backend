@@ -70,7 +70,8 @@ public class ChatServiceImpl implements ChatService {
         String answer = aiManager.doChat(messages);
         final ChatMessage assistantMessage = ChatMessage.builder().role(ChatMessageRole.ASSISTANT)
                 .content(systemPrompt)
-                .build();;
+                .build();
+        messages.add(assistantMessage);
 
         // 返回信息
         return answer;
