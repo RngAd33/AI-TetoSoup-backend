@@ -23,7 +23,7 @@ public class ChatController {
      * @param message 用户输入的消息
      * @return AI 的回复
      */
-    @PostMapping("/doChat/{roomId}")
+    @PostMapping("/{roomId}/send")
     public String doChat(@PathVariable long roomId, @RequestParam String message) {
         return chatService.doChat(roomId, message);
     }
