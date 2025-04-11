@@ -23,7 +23,7 @@ public class AiConfig {
     /**
      * AI客户端初始化
      *
-     * @return 客户端Bean
+     * @return 客户端 Bean
      */
     @Bean
     public ArkService arkService() {
