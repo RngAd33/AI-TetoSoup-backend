@@ -29,9 +29,9 @@ public class ChatController {
     }
 
     /**
-     * 获取所有聊天房间列表
+     * 获取所有聊天室列表
      *
-     * @return 聊天房间列表
+     * @return 聊天室列表
      */
     @GetMapping("/rooms")
     public List<ChatRoom> getChatRoomList() {
