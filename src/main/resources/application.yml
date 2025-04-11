@@ -4,10 +4,13 @@ server:
     context-path: /api
 
 spring:
+  # 指定环境
   profiles:
     active: dev
+  # 应用重命名
   application:
     name: Ai-TetoSoup
+  # 数据库配置
   datasource:
     driver-class-name: ${sky.datasource.driver-class-name}
     url: jdbc:mysql://${sky.datasource.host}:${sky.datasource.port}/${sky.datasource.database}
