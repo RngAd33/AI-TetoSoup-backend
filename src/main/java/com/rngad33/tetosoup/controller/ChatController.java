@@ -24,7 +24,7 @@ public class ChatController {
      * @return AI 的回复
      */
     @PostMapping("/{roomId}/send")
-    public String doChat(@PathVariable long roomId, @RequestParam String message) {
+    public String doChat(@PathVariable("roomId") long roomId, @RequestParam("message") String message) {
         return chatService.doChat(roomId, message);
     }
 

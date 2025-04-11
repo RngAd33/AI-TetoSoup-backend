@@ -93,7 +93,8 @@ public class ChatServiceImpl implements ChatService {
 
         // 返回信息
         if (answer.contains("汤底")) {
-            // 游戏结束，释放房间 id
+            System.out.println("游戏结束了，输入“开始”继续游戏");
+            // 释放房间 id
             globalMessageMap.remove(roomId);
         }
         return answer;

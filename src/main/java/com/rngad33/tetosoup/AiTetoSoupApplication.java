@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
  * 项目启动入口
+ * @url http://localhost:8080/api/doc.html
  */
 @SpringBootApplication
 @MapperScan("com.rngad33.tetosoup.mapper")

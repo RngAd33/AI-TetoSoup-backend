@@ -29,11 +29,10 @@ public class AiConfig {
     public ArkService arkService() {
         ConnectionPool connectionPool = new ConnectionPool(5, 1, TimeUnit.SECONDS);
         Dispatcher dispatcher = new Dispatcher();
-        ArkService service = ArkService.builder()
+        return ArkService.builder()
                 .dispatcher(dispatcher)
                 .connectionPool(connectionPool).baseUrl("https://ark.cn-beijing.volces.com/api/v3/")   // 默认路径
                 .apiKey(apiKey)
                 .build();
-        return service;
     }
 }
