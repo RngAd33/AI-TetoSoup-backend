@@ -33,7 +33,7 @@ public class ChatController {
      *
      * @return 聊天房间列表
      */
-    @GetMapping("/getChatRoomList")
+    @GetMapping("/rooms")
     public List<ChatRoom> getChatRoomList() {
         return chatService.getChatRoomList();
     }
