@@ -27,7 +27,7 @@ public class ChatServiceImpl implements ChatService {
     /**
      * 与 AI 对话
      *
-     * @param roomId   房间号
+     * @param roomId 房间号
      * @param message 用户输入的信息
      * @return 返回结果
      */
@@ -66,6 +66,9 @@ public class ChatServiceImpl implements ChatService {
         List<ChatMessage> messages = new ArrayList<>();
 
         // 判断是否为首次对话
+        if (!message.equals("开始") && globalMessageMap.isEmpty()) {
+            throw new RuntimeException("请先开始游戏");
+        }
         if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
             // - 首次对话，创建房间、初始化消息列表、添加系统预设
             final ChatMessage systemMessage = ChatMessage.builder()
@@ -78,7 +81,7 @@ public class ChatServiceImpl implements ChatService {
             // - 二次对话，读取过去的消息列表
             messages = globalMessageMap.get(roomId);
         }
-        messages.add(userMessage);   // 读取用户消息
+        messages.add(userMessage);   // 写入用户消息
 
         // 调用AI
         String answer = aiManager.doChat(messages);
@@ -98,8 +101,7 @@ public class ChatServiceImpl implements ChatService {
 
     /**
      * 获取房间列表
-     *
-     * @return
+     * @return 房间列表
      */
     @Override
     public List<ChatRoom> getChatRoomList() {
