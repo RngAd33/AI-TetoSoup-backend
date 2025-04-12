@@ -7,7 +7,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.*;
 
 /**
- * 对话接口
+ * 对话接口，用于前后端交互
  */
 @RestController
 @RequestMapping("/chat")
