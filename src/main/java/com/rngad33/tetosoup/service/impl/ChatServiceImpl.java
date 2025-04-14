@@ -67,7 +67,7 @@ public class ChatServiceImpl implements ChatService {
 
         // 判断是否为首次对话
         if (!message.equals("开始") && globalMessageMap.isEmpty()) {
-            throw new RuntimeException("请先开始游戏");
+            throw new RuntimeException("请先开始游戏！");
         }
         if (message.equals("开始") && !globalMessageMap.containsKey(roomId)) {
             // - 首次对话，创建房间、初始化消息列表、添加系统预设
