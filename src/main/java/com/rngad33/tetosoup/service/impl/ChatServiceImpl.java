@@ -102,6 +102,7 @@ public class ChatServiceImpl implements ChatService {
 
     /**
      * 获取房间列表
+     *
      * @return 房间列表
      */
     @Override

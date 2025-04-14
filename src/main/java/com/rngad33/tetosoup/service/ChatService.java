@@ -20,7 +20,7 @@ public interface ChatService {
     /**
      * 获取房间列表
      *
-     * @return
+     * @return 房间列表
      */
     List<ChatRoom> getChatRoomList();
 
