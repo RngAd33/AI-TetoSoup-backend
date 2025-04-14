@@ -29,7 +29,7 @@ public class ChatController {
     }
 
     /**
-     * 获取所有聊天室列表
+     * 获取所有聊天室
      *
      * @return 聊天室列表
      */
