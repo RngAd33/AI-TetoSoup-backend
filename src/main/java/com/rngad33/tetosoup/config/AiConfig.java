@@ -1,14 +1,13 @@
 package com.rngad33.tetosoup.config;
 
 import com.volcengine.ark.runtime.service.ArkService;
+import java.util.concurrent.TimeUnit;
 import lombok.Data;
 import okhttp3.ConnectionPool;
 import okhttp3.Dispatcher;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-
-import java.util.concurrent.TimeUnit;
 
 /**
  * AI配置
